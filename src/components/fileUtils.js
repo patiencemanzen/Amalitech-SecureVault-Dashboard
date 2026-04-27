@@ -37,9 +37,9 @@ export function getFileIconMeta(node) {
   return EXT_ICONS[ext] ?? { icon: '📎', color: 'text-slate-400' }
 }
 
-// ── Tree traversal ─────────────────────────────────────────────────────────
-
 /**
+ * Tree traversal 
+ * 
  * Recursively flatten only the visible nodes (folders must be in expandedIds).
  * Returns array of { node, depth }.
  */

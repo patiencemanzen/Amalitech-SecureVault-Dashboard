@@ -1,12 +1,5 @@
 import { buildPath, getExtension, getFileIconMeta, countContents } from './fileUtils'
 
-/**
- * PropertiesPanel
- * ───────────────
- * Displays metadata for the selected node:
- * - Name, Type, Size (files), Path, Contents count (folders)
- * Shows an empty state when nothing is selected.
- */
 export default function PropertiesPanel({ node, allData }) {
   if (!node) return <EmptyState />
 

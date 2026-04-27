@@ -1,8 +1,7 @@
 import { useRef } from 'react'
 
 /**
- * SearchBar — Story 5 (Bonus Feature)
- * Filters the tree in real-time, auto-expanding folders that contain matches.
+ * SearchBar
  */
 export function SearchBar({ value, onChange }) {
   const inputRef = useRef(null)
@@ -52,8 +51,7 @@ export function SearchBar({ value, onChange }) {
 }
 
 /**
- * KeyboardHint — small pill showing available keyboard shortcuts.
- * Visible on hover of the explorer panel.
+ * KeyboardHint
  */
 export function KeyboardHint() {
   const keys = [

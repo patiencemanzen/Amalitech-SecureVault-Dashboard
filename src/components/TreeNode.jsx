@@ -1,12 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { getExtension, getFileIconMeta } from './fileUtils'
 
-/**
- * Renders one row in the file tree.
- * Folder rows include a chevron and toggle on click.
- * File rows show a type icon and size badge.
- * Supports keyboard focus, selection highlight, and search highlighting.
- */
 export default function TreeNode({
   node,
   depth,

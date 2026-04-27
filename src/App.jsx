@@ -9,10 +9,10 @@ import { buildPath, countAll } from "./components/fileUtils";
 const { files: totalFiles, folders: totalFolders } = countAll(rawData);
 
 export default function App() {
-  const [selected, setSelected] = useState(null); // full node object
+  const [selected, setSelected] = useState(null);
   const [focusedId, setFocusedId] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [contextMenu, setContextMenu] = useState(null); // { x,y,node,expandAll,collapseAll }
+  const [contextMenu, setContextMenu] = useState(null);
   const [toast, setToast] = useState(null);
   const [clock, setClock] = useState(new Date());
 
@@ -22,13 +22,13 @@ export default function App() {
     return () => clearInterval(id);
   }, []);
 
-  // ── Toast helper ──────────────────────────────────────────────────────────
+  // ── Toast helper
   const showToast = useCallback((msg) => {
     setToast(msg);
     setTimeout(() => setToast(null), 2800);
   }, []);
 
-  // ── Context menu actions ──────────────────────────────────────────────────
+  // ── Context menu actions
   const handleContextMenu = useCallback((e, node, expandAll, collapseAll) => {
     e.preventDefault();
     setContextMenu({
@@ -46,16 +46,13 @@ export default function App() {
       const pathStr = path.map((n) => n.name).join(" › ");
       navigator.clipboard
         .writeText(pathStr)
-        .then(() => showToast(`✓ Path copied: ${pathStr}`))
-        .catch(() =>
-          showToast("⚠ Clipboard unavailable — check browser permissions"),
-        );
+        .then(() => showToast(`Path copied: ${pathStr}`))
+        .catch(() => showToast("Clipboard unavailable "));
       setContextMenu(null);
     },
     [showToast],
   );
 
-  // ── Keyboard shortcut: / to focus search ─────────────────────────────────
   useEffect(() => {
     const handler = (e) => {
       if (e.key === "/" && document.activeElement.tagName !== "INPUT") {
@@ -67,10 +64,10 @@ export default function App() {
     return () => document.removeEventListener("keydown", handler);
   }, []);
 
-  // ── Render ────────────────────────────────────────────────────────────────
+  // ── Render
   return (
     <div className="h-screen flex flex-col scanlines overflow-hidden bg-vault-900">
-      {/* ── Top header bar ─────────────────────────────────────────────────── */}
+      {/* ── Top header bar  */}
       <header className="h-11 flex-shrink-0 flex items-center gap-0 bg-vault-800 border-b border-vault-600 z-10">
         {/* Brand */}
         <div className="flex items-center gap-2.5 px-4 border-r border-vault-600 h-full">
@@ -86,7 +83,7 @@ export default function App() {
             />
           </svg>
           <span className="text-xs font-bold tracking-widest text-cyan-400 uppercase">
-            SecureVault
+            Secure Vault
           </span>
         </div>
 
@@ -110,12 +107,12 @@ export default function App() {
         </div>
       </header>
 
-      {/* ── Main layout ────────────────────────────────────────────────────── */}
+      {/* ── Main layout  */}
       <div className="flex flex-1 overflow-hidden">
         {/* Left accent strip */}
         <div className="w-1 bg-gradient-to-b from-cyan-500/30 via-cyan-500/10 to-transparent flex-shrink-0" />
 
-        {/* ── File tree panel ───────────────────────────────────────────────── */}
+        {/* ── File tree panel  */}
         <div className="flex flex-col flex-1 min-w-0 overflow-hidden border-r border-vault-600">
           {/* Panel header */}
           <div className="flex items-center justify-between px-3 py-2 border-b border-vault-600 flex-shrink-0">
@@ -153,13 +150,13 @@ export default function App() {
           <KeyboardHint />
         </div>
 
-        {/* ── Properties panel ─────────────────────────────────────────────── */}
+        {/* ── Properties panel  */}
         <div className="w-64 flex-shrink-0 bg-vault-800 overflow-hidden">
           <PropertiesPanel node={selected} allData={rawData} />
         </div>
       </div>
 
-      {/* ── Context menu ─────────────────────────────────────────────────────── */}
+      {/* ── Context menu  */}
       {contextMenu && (
         <ContextMenu
           menu={contextMenu}
@@ -170,7 +167,7 @@ export default function App() {
         />
       )}
 
-      {/* ── Toast notification ─────────────────────────────────────────────── */}
+      {/* ── Toast notification  */}
       {toast && (
         <div className="fixed bottom-5 left-1/2 bg-vault-800 border border-cyan-500/30 text-cyan-400 text-[11px] font-mono px-4 py-2.5 rounded-lg shadow-2xl z-[9999] toast-in max-w-sm">
           {toast}

@@ -2,15 +2,6 @@ import { useState, useMemo, useCallback, useRef } from 'react'
 import TreeNode from './TreeNode'
 import { flattenVisible, filterTree, collectDescendantFolderIds } from './fileUtils'
 
-/**
- * FileExplorer
- * ────────────
- * - Renders the recursive tree from `data` using a recursive renderNodes() function.
- * - Maintains expandedIds (Set) for open/closed folders.
- * - Handles keyboard navigation (↑↓ move focus, →← expand/collapse, Enter select).
- * - When searchQuery is active, auto-expands folders that contain matches.
- * - Exposes onContextMenu so App can show the right-click menu.
- */
 export default function FileExplorer({
   data,
   searchQuery,
@@ -25,7 +16,7 @@ export default function FileExplorer({
   const [expandedIds, setExpandedIds] = useState(new Set())
   const containerRef = useRef(null)
 
-  // ── Filter tree by search ────────────────────────────────────────────────
+  // ── Filter tree by search 
   const { filtered, autoExpand } = useMemo(
     () => filterTree(data, searchQuery),
     [data, searchQuery]
@@ -37,13 +28,13 @@ export default function FileExplorer({
     return new Set([...expandedIds, ...autoExpand])
   }, [expandedIds, autoExpand, searchQuery])
 
-  // ── Flat visible list for keyboard nav ──────────────────────────────────
+  // ── Flat visible list for keyboard nav 
   const flatItems = useMemo(
     () => flattenVisible(filtered, effectiveExpanded),
     [filtered, effectiveExpanded]
   )
 
-  // ── Toggle expand ────────────────────────────────────────────────────────
+  // ── Toggle expand 
   const toggleExpand = useCallback((id) => {
     setExpandedIds((prev) => {
       const next = new Set(prev)
@@ -75,7 +66,7 @@ export default function FileExplorer({
   // Actually: we pass expandAll/collapseAll callbacks UP so App can give them to ContextMenu
   // But App needs to pass them down. Simplest: put context menu handling here.
 
-  // ── Keyboard navigation ──────────────────────────────────────────────────
+  // ── Keyboard navigation 
   const handleKeyDown = useCallback(
     (e) => {
       const currentIdx = flatItems.findIndex((item) => item.node.id === focusedId)
@@ -128,7 +119,7 @@ export default function FileExplorer({
     [flatItems, focusedId, effectiveExpanded, toggleExpand, onSelect, onFocusChange]
   )
 
-  // ── Recursive renderer ───────────────────────────────────────────────────
+  // ── Recursive renderer 
   function renderNodes(nodes, depth = 0) {
     return nodes.map((node) => (
       <div key={node.id} className="tree-indent">
@@ -160,7 +151,7 @@ export default function FileExplorer({
     ))
   }
 
-  // ── Render ───────────────────────────────────────────────────────────────
+  // ── Render 
   return (
     <div
       ref={containerRef}
