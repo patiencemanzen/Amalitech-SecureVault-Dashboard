@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+  -webkit-font-smoothing: antialiased;
+  background: #080d1a;
+  color: #e2e8f0;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: #080d1a; }
+::-webkit-scrollbar-thumb { background: #1a2744; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #243355; }
+
+/* Scanline overlay for cyber aesthetic */
+.scanlines::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.03) 2px,
+    rgba(0,0,0,0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Cyan glow for focus elements */
+.glow-cyan { box-shadow: 0 0 8px rgba(34,211,238,0.25); }
+
+/* Toast slide-up */
+@keyframes slide-up {
+  from { opacity:0; transform: translateY(12px) translateX(-50%); }
+  to   { opacity:1; transform: translateY(0)    translateX(-50%); }
+}
+.toast-in { animation: slide-up 0.2s ease-out forwards; }
+
+/* Folder connector lines */
+.tree-indent { position: relative; }
+
+/* Keyboard hint badge */
+@keyframes fade-in { from { opacity:0; } to { opacity:1; } }
+.fade-in { animation: fade-in 0.15s ease-out forwards; }
