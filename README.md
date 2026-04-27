@@ -2,7 +2,7 @@
 
 A high-performance, keyboard-accessible file explorer built for enterprise law firms and banks. Features a recursive folder tree, real-time search, file properties inspection, and a right-click context menu — all in a dark "cyber-secure" aesthetic with zero third-party UI libraries.
 
-**[Live Demo →](https://your-deployment.vercel.app)**  
+**[Live Demo →](https://amalitechsecuredashboard.netlify.app/)**  
 **[Design File (Figma) →](https://www.figma.com/design/IkPC8siGcp5IMAewtkhNt8/Amalitech---SecureVault?node-id=0-1&t=xHB00pWdu8tqAbRm-1)**
 
 ---
@@ -25,8 +25,8 @@ A high-performance, keyboard-accessible file explorer built for enterprise law f
 ## Local Setup
 
 ```bash
-git clone https://github.com/<your-username>/AmaliTech-DEG-Project-based-challenges.git
-cd AmaliTech-DEG-Project-based-challenges/fullstack/SecureVault-Dashboard
+git clone https://github.com/patiencemanzen/Amalitech-SecureVault-Dashboard
+cd Amalitech-SecureVault-Dashboard
 
 npm install
 npm run dev       # → http://localhost:5173
